@@ -1,4 +1,4 @@
-# flutter_book_app
+# Flutter Book App
 
 flutter book app sample
 
