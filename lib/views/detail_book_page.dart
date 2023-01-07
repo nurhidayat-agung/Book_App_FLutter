@@ -47,10 +47,10 @@ class _DetailBookPageState extends State<DetailBookPage> {
           : Column(
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Flexible(
-                      flex: 1,
+                      flex: 2,
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -63,34 +63,117 @@ class _DetailBookPageState extends State<DetailBookPage> {
                         },
                         child: Image.network(
                           detailBook!.image!,
-                          height: 100,
+                          height: 130,
                         ),
                       ),
                     ),
                     Flexible(
-                      flex: 3,
+                      flex: 5,
                       child: Padding(
-                        padding: const EdgeInsets.only(bottom: 12.0),
+                        padding: const EdgeInsets.only(top: 12.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(detailBook!.title!),
-                            Text(detailBook!.subtitle!),
+                            Text(
+                              detailBook!.title!,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              detailBook!.authors!,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              detailBook!.subtitle!,
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              detailBook!.price!,
+                              style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              children: List.generate(
+                                5,
+                                (index) => Icon(
+                                  Icons.star,
+                                  color: index < int.parse(detailBook!.rating!)
+                                      ? Colors.yellow
+                                      : Colors.grey,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ),
                   ],
                 ),
-                Text(detailBook!.price!),
-                Text(detailBook!.isbn10!),
-                Text(detailBook!.isbn13!),
-                Text(detailBook!.isbn13!),
-                Text(detailBook!.pages!),
-                Text(detailBook!.authors!),
-                Text(detailBook!.publisher!),
-                Text(detailBook!.desc!),
-                Text(detailBook!.rating!),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(),
+                      child: const Text("Buy"),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        detailBook!.desc!,
+                        textAlign: TextAlign.justify,
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Year : " + detailBook!.year!),
+                          Text("ISBN. " + detailBook!.pages!),
+                          Text(detailBook!.pages! + " Pages"),
+                          Text("Publisher : " + detailBook!.publisher!),
+                          Text("Language : " + detailBook!.language!),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
     );
